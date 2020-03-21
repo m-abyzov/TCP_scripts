@@ -1,11 +1,5 @@
-/*
-# Exclude all except below:
-!src
-!pom.xml
-!.gitignore
+# Exclude .idea dir and everything inside it:
+/.idea/*
 
-# exclude all files ends with .iml
-**.iml
-
-# also exclude possible resources
-src/main/resources
+# exclude all files ends with .zip
+*.zip
