@@ -1,5 +1,8 @@
 # Exclude .idea dir and everything inside it:
 /.idea/*
 
-# exclude all files ends with .zip
+# exclude all files ends with followed extensions:
 *.zip
+*.tar.xz
+*.iml
+*.xml
