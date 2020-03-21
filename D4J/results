@@ -1,0 +1,42 @@
+Lang: -------------------------------------------------------------------
+
+Kanonizo
+Greedy: Calculated APFD value is: 0.718906863814928
+Additional_Greedy: Calculated APFD value is: 0.7204550414666084
+Random search: Calculated APFD value is: 0.7198207660410301
+Genetic: Fault
+
+Modificare:
+Random: (0.76810 +0.772977 +0.817778+0.7669+0.79987+0.8063
++0.812636 + 0.810426+ 0.78731 + 0.77212) / 10 = 0.7914
+
+Getlo: Calculated APFD value is: 0.78961
+
+
+
+
+Math: -------------------------------------------------------------------
+Genetic: Fail
+other 3 -> look at the table;
+
+Modificare:
+Random: (0.90738 + 0.8916 + 0.9058 + 0.889 + 0.9019 + 0.922147 + 0.9120517
++0.8926733 +0.9188 + 0.9055) / 10 = 0.9047
+
+
+Time: -------------------------------------------------------------------
+Random:   Calculated APFD value is: 0.6699883882511944
+Greedy:   Calculated APFD value is: 0.6453773836257756
+A_Greedy: Calculated APFD value is: 0.6186103604460854
+R_search: Calculated APFD value is: 0.3297927017303409
+
+
+Modificare:
+Random: (0.71769 + 0.7610168 + 0.69897 + 0.63997 + 0.661469 + 0.67070
++ 0.71007 + 0.70016 + 0.76214 + 0.68447) / 10 = 0.7
+
+
+Chart, Closure, Mockito - Fail with Kanonizo
+
+
+

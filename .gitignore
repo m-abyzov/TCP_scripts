@@ -1,0 +1,11 @@
+/*
+# Exclude all except below:
+!src
+!pom.xml
+!.gitignore
+
+# exclude all files ends with .iml
+**.iml
+
+# also exclude possible resources
+src/main/resources
