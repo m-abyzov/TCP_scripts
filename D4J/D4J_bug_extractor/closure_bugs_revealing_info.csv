@@ -60,7 +60,6 @@ com.google.javascript.jscomp.CommandLineRunnerTest::testCheckGlobalThisOff
 com.google.javascript.jscomp.CommandLineRunnerTest::testIssue504,com.google.javascript.jscomp.NodeUtilTest::testGetBooleanValue
 com.google.javascript.jscomp.PeepholeRemoveDeadCodeTest::testCall1,com.google.javascript.jscomp.PeepholeRemoveDeadCodeTest::testCall2,com.google.javascript.jscomp.PeepholeRemoveDeadCodeTest::testRemoveUselessOps
 com.google.javascript.jscomp.LightweightMessageFormatterTest::testFormatErrorSpaceEndOfLine1,com.google.javascript.jscomp.LightweightMessageFormatterTest::testFormatErrorSpaceEndOfLine2
-
 com.google.javascript.jscomp.CommandLineRunnerTest::testES5StrictUseStrictMultipleInputs
 com.google.javascript.jscomp.CodePrinterTest::testZero
 com.google.javascript.jscomp.TypeCheckTest::testGetTypedPercent5,com.google.javascript.jscomp.TypeCheckTest::testGetTypedPercent6
@@ -90,7 +89,6 @@ com.google.javascript.jscomp.CollapsePropertiesTest::testAddPropertyToChildOfUnc
 com.google.javascript.jscomp.TypeCheckTest::testBackwardsTypedefUse8,com.google.javascript.jscomp.TypeCheckTest::testBackwardsTypedefUse9
 com.google.javascript.jscomp.CheckGlobalThisTest::testLendsAnnotation3
 com.google.javascript.jscomp.ProcessClosurePrimitivesTest::testProvideInIndependentModules4
-
 com.google.javascript.jscomp.NodeUtilTest::testValidDefine,com.google.javascript.jscomp.ProcessDefinesTest::testOverridingString1,com.google.javascript.jscomp.ProcessDefinesTest::testOverridingString3
 com.google.javascript.jscomp.TypeCheckTest::testQualifiedNameInference5,com.google.javascript.jscomp.TypedScopeCreatorTest::testGlobalQualifiedNameInLocalScope
 com.google.javascript.jscomp.TypeCheckTest::testFunctionArguments16
