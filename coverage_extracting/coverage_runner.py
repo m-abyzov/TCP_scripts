@@ -50,7 +50,7 @@ def construct_query_for_obtaining_coverage(raw_test_method):
     test_class = test_method_for_query.split('::')[0].split('.')[-1]
     test_method = test_method_for_query.split('::')[1]
 
-    coverage_file_name = f'{test_class}___{test_method}.xml'
+    coverage_file_name = f'{test_class}___{test_method}.xml'.replace('$', '_')
 
     return f'{ACTIVATE_ENV_QUERY} && {ACTIVATE_D4J_QUERY} && {test_method_for_query} ' \
            f'&& mv coverage.xml {coverage_file_name} && mv {coverage_file_name} {DESTINATION_COVERAGE_FOLDER}'
