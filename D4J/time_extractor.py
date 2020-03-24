@@ -8,15 +8,14 @@ D4J_FRAMEWORK_DIR = f'{D4J_MAIN_DIR}/framework/bin'
 ACTIVATE_ENV_QUERY = "source /home/misha/environments/main/bin/activate"
 ACTIVATE_D4J_QUERY = f'export PATH=$PATH:{D4J_FRAMEWORK_DIR}'
 
-PROJECT_IDS = ["math", "time", "lang"]
+PROJECT_IDS = ["closure"]
 
-all_tests_with_time = []
 for PROJECT_ID in PROJECT_IDS:
     print(f"start measuring test time for \"{PROJECT_ID}\" project:")
 
-    PROJECT_TMP_DIR = f'{D4J_MAIN_DIR}/tmp/{PROJECT_ID.lower()}_1_buggy'
     ID_NAME_MAPPING_FILE = F"../D4J/{PROJECT_ID}/{PROJECT_ID}_id_name_mapping.txt"
 
+    all_tests_with_time = []
     with open(ID_NAME_MAPPING_FILE, 'r') as all_test_file:
         for test_id, test_name in enumerate(all_test_file):
             test_name = test_name.strip()
