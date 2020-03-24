@@ -62,11 +62,10 @@ def calculate_APFD(tests_order, test_info, bugs_count):
 
 
 if __name__ == "__main__":
-    calculated_order = read_test_order(
-        "D4J/time/modificare/time_random_orderings/time_random_ordering_10.txt")
+    calculated_order = read_test_order("D4J/lang/method_coverage/modificare/lang_GA_ordering.dat")
     # calculated_order = read_test_order("sudoku/gelations/gelations_sudoku_test_order")
     # tests_revealings, bugs_count = read_bugs_info("sudoku/bugs_revealing_info.csv")
-    tests_revealings, bugs_count = read_bugs_info("D4J/D4J_bug_extractor/time_bugs_revealing_info.csv")
+    tests_revealings, bugs_count = read_bugs_info("D4J/D4J_bug_extractor/lang_bugs_revealing_info.csv")
     print(calculated_order)
     print(tests_revealings)
 
