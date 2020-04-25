@@ -8,7 +8,7 @@ D4J_FRAMEWORK_DIR = f'{D4J_MAIN_DIR}/framework/bin'
 ACTIVATE_ENV_QUERY = "source /home/misha/environments/main/bin/activate"
 ACTIVATE_D4J_QUERY = f'export PATH=$PATH:{D4J_FRAMEWORK_DIR}'
 
-PROJECT_IDS = ["closure"]
+PROJECT_IDS = ["chart"]
 
 for PROJECT_ID in PROJECT_IDS:
     print(f"start measuring test time for \"{PROJECT_ID}\" project:")
