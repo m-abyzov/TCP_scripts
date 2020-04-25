@@ -1,6 +1,12 @@
-KANONIZO_RES_FILE = "../D4J/time/kanonizo/joda_randomsearch_res.csv"
+from pathlib import Path
+
+PROJECT_ID = "chart"
+
+KANONIZO_RES_FILE = f"../D4J/chart/kanonizo/chart_random_res_2.csv"
 PROCESSED_KANONIZO_RES_FILE = KANONIZO_RES_FILE.replace(KANONIZO_RES_FILE.split("/")[-1], "") \
                               + "processed/processed_" + KANONIZO_RES_FILE.split("/")[-1]
+
+Path("/".join(PROCESSED_KANONIZO_RES_FILE.split('/')[:-1])).mkdir(parents=True, exist_ok=True)
 
 res_string = ""
 
