@@ -1,9 +1,9 @@
 import os
 from apfd import read_bugs_info, read_test_order, calculate_APFD
 
-PROJECT_ID = "lang"
+PROJECT_ID = "chart"
 
-DIR_WITH_RANDOM_ORDERINGS = f"../D4J/{PROJECT_ID}/line_coverage/modificare/{PROJECT_ID}_line_random_orderings"
+DIR_WITH_RANDOM_ORDERINGS = f"../D4J/{PROJECT_ID}/modificare/{PROJECT_ID}_random_orderings"
 BUGS_INFO_FILE = f"../D4J/D4J_bug_extractor/{PROJECT_ID}_bugs_revealing_info.csv"
 
 average_random_APFD = 0
