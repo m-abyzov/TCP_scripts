@@ -1,9 +1,9 @@
-PROJECT_IDS = ["time", "lang", "math"]
+PROJECT_IDS = ["chart"]
 
 
 for PROJECT_ID in PROJECT_IDS:
     # processed with XMLCoverageParser (CoberturaCoverageParser) all test file .
-    ALL_TEST_FILE = F"../D4J/{PROJECT_ID}/{PROJECT_ID}_all_tests"
+    ALL_TEST_FILE = F"../D4J/{PROJECT_ID}/{PROJECT_ID}_id_name_mapping.txt"
 
     # processed numeric ordering with "getlo_numeric_results_processor.py".
     NUMERIC_ORDERING_FILE = F"../D4J/{PROJECT_ID}/getlo/{PROJECT_ID}_processed_numeric_ordering"
@@ -13,7 +13,7 @@ for PROJECT_ID in PROJECT_IDS:
 
     with open(ALL_TEST_FILE, "r") as all_tests_file:
         for test_id, test_name in enumerate(all_tests_file):
-            test_name = test_name.strip()
+            test_name = test_name.strip().split()[0]
             if len(test_name) > 0:
                 test_id_name_mapper[test_id + 1] = test_name
 

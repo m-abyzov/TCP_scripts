@@ -6,14 +6,14 @@ import os
 # PROJECT_PATH = "tmp/lang_1_fixed"
 
 # Path(PROJECT_PATH).mkdir(parents=True, exist_ok=True)
-PROJECT_NAME = "closure"
+PROJECT_NAME = "chart"
 
 D4J_MAIN_DIR = "/home/misha/TCP_tools/defects4j"
 D4J_FRAMEWORK_DIR = f'{D4J_MAIN_DIR}/framework/bin'
 
 COMPILATION_DIR = f"{D4J_MAIN_DIR}/tmp/{PROJECT_NAME}_1_buggy"
 
-ALL_TEST_METHOD_NAMES = f'{COMPILATION_DIR}/all_tests'
+ALL_TEST_METHOD_NAMES = f'{COMPILATION_DIR}/all_tests_saved'
 
 ACTIVATE_ENV_QUERY = "source /home/misha/environments/main/bin/activate"
 ACTIVATE_D4J_QUERY = f'export PATH=$PATH:{D4J_FRAMEWORK_DIR}'
