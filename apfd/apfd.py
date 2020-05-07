@@ -61,13 +61,23 @@ def calculate_APFD(tests_order, test_info, bugs_count):
     return apfd
 
 
-if __name__ == "__main__":
-    PROJECT_ID = "chart"
-    calculated_order = read_test_order(f"D4J/{PROJECT_ID}/getlo/{PROJECT_ID}_result_ordering")
+def estimate_single_experiment(TEST_ORDER_PATH, BUGS_INFO_PATH, print_orders=True):
+    calculated_order = read_test_order(TEST_ORDER_PATH)
     # calculated_order = read_test_order("sudoku/gelations/gelations_sudoku_test_order")
     # tests_revealings, bugs_count = read_bugs_info("sudoku/bugs_revealing_info.csv")
-    tests_revealings, bugs_count = read_bugs_info(f"D4J/D4J_bug_extractor/{PROJECT_ID}_bugs_revealing_info.csv")
-    print(calculated_order)
-    print(tests_revealings)
+    tests_revealings, bugs_count = read_bugs_info(BUGS_INFO_PATH)
+    if print_orders:
+        print(calculated_order)
+        print(tests_revealings)
+    return calculate_APFD(calculated_order, tests_revealings, bugs_count)
 
-    apfd = calculate_APFD(calculated_order, tests_revealings, bugs_count)
+
+def get_bugs_info_path_by_project_id(PROJECT_ID):
+    return f"D4J/D4J_bug_extractor/{PROJECT_ID}_bugs_revealing_info.csv"
+
+
+if __name__ == "__main__":
+    PROJECT_ID = "lang"
+    TEST_ORDER_PATH = f"D4J/{PROJECT_ID}/method_coverage/getlo/2/{PROJECT_ID}_result_ordering"
+    BUGS_INFO_PATH = get_bugs_info_path_by_project_id(PROJECT_ID)
+    estimate_single_experiment(TEST_ORDER_PATH, BUGS_INFO_PATH)

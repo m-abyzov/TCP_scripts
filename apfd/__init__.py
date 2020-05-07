@@ -1,1 +1,1 @@
-from apfd.apfd import read_bugs_info, read_test_order, calculate_APFD
+from apfd.apfd import *
