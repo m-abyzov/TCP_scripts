@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 
-PROJECT_IDs = ["chart"]
+PROJECT_IDs = ["lang"]
 D4J_ROOT_DIR = "../D4J"
 
 
@@ -42,9 +42,12 @@ if __name__ == "__main__":
                         continue
 
                     processed_line = line.split(',')[0]
-                    method_name = processed_line.split('(')[0]
-
-                    full_name = f'{processed_line.split("(")[1][:-1]}::{method_name}\n'
+                    if len(processed_line.split('(')) > 1:
+                        method_name = processed_line.split('(')[0]
+                        full_name = f'{processed_line.split("(")[1][:-1]}::{method_name}\n'
+                    else:
+                        full_name = ".".join(processed_line.split(".")[:-1])
+                        full_name += f'::{processed_line.split(".")[-1]}\n'
                     res_string += full_name
 
             # write to the processed file.
