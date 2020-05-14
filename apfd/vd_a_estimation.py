@@ -79,8 +79,8 @@ def estimate_orderings_foreach_project(project_list, n_launches=5):
                 APFDs[algorithms_dir.name].append(estimate_single_experiment(
                     algo_result_file.path,
                     get_bugs_info_path_by_project_id(project_id),
-                    print_orders=False
-                ))
+                    print_orders=False)
+                )
         return APFDs
 
     all_APFDs = {}
@@ -125,7 +125,7 @@ def run_single_real_experiment():
 
 if __name__ == "__main__":
     # run_simple_example()
-    projects_list = ['chart']
+    projects_list = ['lang']
     # run_single_real_experiment()
 
 
