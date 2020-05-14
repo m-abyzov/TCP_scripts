@@ -1,0 +1,14 @@
+VD_A for lang project:
+VD_A(treatment=getlo, control=kanonizo_random) = (0.6, 'small')
+VD_A(treatment=kanonizo_greedy, control=kanonizo_random) = (0.76, 'large')
+VD_A(treatment=kanonizo_randomsearch, control=kanonizo_random) = (0.56, 'negligible')
+VD_A(treatment=kanonizo_additionalgreedy, control=kanonizo_random) = (0.52, 'negligible')
+VD_A(treatment=kanonizo_geneticalgorithm, control=kanonizo_random) = (0.56, 'negligible')
+VD_A(treatment=modificare_HC_FA, control=kanonizo_random) = (0.96, 'large')
+VD_A(treatment=modificare_random, control=kanonizo_random) = (0.88, 'large')
+VD_A(treatment=modificare_ART_man_avg, control=kanonizo_random) = (0.76, 'large')
+VD_A(treatment=modificare_greedy, control=kanonizo_random) = (0.4, 'small')
+VD_A(treatment=modificare_genetic, control=kanonizo_random) = (0.64, 'small')
+VD_A(treatment=modificare_SANN, control=kanonizo_random) = (0.6, 'small')
+VD_A(treatment=modificare_HC_SA, control=kanonizo_random) = (0.56, 'negligible')
+
