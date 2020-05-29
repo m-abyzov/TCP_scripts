@@ -71,16 +71,17 @@ def estimate_orderings_foreach_project(project_list, n_launches=5):
 
     def estimate_kanonizo_modificare_APFDs(project_id, tool_results_path):
         APFDs = {}
-        for algorithms_dir in os.scandir(tool_results_path):
-            APFDs[algorithms_dir.name] = []
-            for i, algo_result_file in enumerate(os.scandir(algorithms_dir)):
-                if i + 1 > n_launches:
-                    break
-                APFDs[algorithms_dir.name].append(estimate_single_experiment(
-                    algo_result_file.path,
-                    get_bugs_info_path_by_project_id(project_id),
-                    print_orders=False)
-                )
+        if os.path.isdir(tool_results_path):
+            for algorithms_dir in os.scandir(tool_results_path):
+                APFDs[algorithms_dir.name] = []
+                for i, algo_result_file in enumerate(os.scandir(algorithms_dir)):
+                    if i + 1 > n_launches:
+                        break
+                    APFDs[algorithms_dir.name].append(estimate_single_experiment(
+                        algo_result_file.path,
+                        get_bugs_info_path_by_project_id(project_id),
+                        print_orders=False)
+                    )
         return APFDs
 
     all_APFDs = {}
@@ -98,56 +99,59 @@ def estimate_orderings_foreach_project(project_list, n_launches=5):
             project_id, modificare_results_path)
     return all_APFDs
 
-def log_results(all_APFDs):
-    with open(f"{D4J_ROOT_DIR}/APFD_projects_tools_statistics.txt", "w") as apfd_file:
+
+def log_results(all_APFDs, project_id):
+    with open(f"{D4J_ROOT_DIR}/{project_id}/APFD_projects_tools_statistics.txt", "w") as apfd_file:
         for tool_name, tool_results in all_APFDs.items():
+            if project_id not in tool_name:
+                continue
+
             if 'getlo' in tool_name:
-                apfd_file.write(f"{tool_name}: {tool_results}\n")
+                apfd_file.write(f"{tool_name}: {tool_results}, avg: {round(sum(tool_results) / len(tool_results), 5)}\n")
                 continue
 
             apfd_file.write(f"{tool_name}: [\n")
             for algo_name, algo_results in tool_results.items():
-                apfd_file.write(f"\t{algo_name}: {algo_results}\n")
+                apfd_file.write(f"\t{algo_name}: {algo_results}, avg: {round(sum(algo_results) / len(algo_results), 5)}\n")
             apfd_file.write(f"\t]\n")
 
 
-def run_custom_example(treatment, control):
-    print(VD_A(treatment, control))
+# def run_custom_example(treatment, control):
+#     print(VD_A(treatment, control))
 
 
-def run_single_real_experiment():
-    chart_getlo = [0.5543337191764005, 0.5543337191764005, 0.5543337191764005, 0.5543337191764005,
-                   0.5543337191764005]
-    kanonizo_random = [0.6013350574913501, 0.6059483451577954, 0.6245238178450355, 0.5591689092370602,
-                       0.6534267640582953]
-    run_custom_example(chart_getlo, kanonizo_random)
+# def run_single_real_experiment():
+#     chart_getlo = [0.5543337191764005, 0.5543337191764005, 0.5543337191764005, 0.5543337191764005,
+#                    0.5543337191764005]
+#     kanonizo_random = [0.6013350574913501, 0.6059483451577954, 0.6245238178450355, 0.5591689092370602,
+#                        0.6534267640582953]
+#     run_custom_example(chart_getlo, kanonizo_random)
 
 
 if __name__ == "__main__":
     # run_simple_example()
-    projects_list = ['lang']
+    projects_list = ['chart']
     # run_single_real_experiment()
+    CONTROL_RANDOM_TOOL = 'modificare'
 
+    for project_id in projects_list:
+        all_APFDs = estimate_orderings_foreach_project(projects_list, n_launches=10)
+        log_results(all_APFDs, project_id)
 
-    all_APFDs = estimate_orderings_foreach_project(projects_list)
-    log_results(all_APFDs)
-
-    # compute and log VD_A statistics results:
-    tools_list = ['getlo', 'kanonizo', 'modificare']
-    with open(f"{D4J_ROOT_DIR}/VD_A_projects_tools_statistics.txt", "w") as vd_a_file:
-        for project_id in projects_list:
+        # compute and log VD_A statistics results:
+        tools_list = ['getlo', 'kanonizo', 'modificare']
+        with open(f"{D4J_ROOT_DIR}/{project_id}/VD_A_projects_tools_statistics.txt", "w") as vd_a_file:
             vd_a_file.write(f"VD_A for {project_id} project:\n")
-            control_results = all_APFDs[f"{project_id}_kanonizo"]['random']
+            control_results = all_APFDs[f"{project_id}_{CONTROL_RANDOM_TOOL}"]['random']
             for tool_id in tools_list:
-                # treatment_key =
                 if tool_id == 'getlo':
                     treatment_results = all_APFDs[f'{project_id}_{tool_id}']
-                    vd_a_file.write(f"VD_A(treatment=getlo, control=kanonizo_random) = {VD_A(treatment_results, control_results)}\n")
+                    vd_a_file.write(f"VD_A(treatment=getlo, control={CONTROL_RANDOM_TOOL}_random) = {VD_A(treatment_results, control_results)}\n")
                 else:
                     for algo_name, treatment_results in all_APFDs[f'{project_id}_{tool_id}'].items():
-                        if tool_id == 'kanonizo' and algo_name == 'random':
+                        if tool_id == CONTROL_RANDOM_TOOL and algo_name == 'random':
                             continue  # because it is the control group.
                         vd_a_file.write(
-                            f"VD_A(treatment={tool_id}_{algo_name}, control=kanonizo_random) = {VD_A(treatment_results, control_results)}\n"
+                            f"VD_A(treatment={tool_id}_{algo_name}, control={CONTROL_RANDOM_TOOL}_random) = {VD_A(treatment_results, control_results)}\n"
                         )
             vd_a_file.write('\n')
