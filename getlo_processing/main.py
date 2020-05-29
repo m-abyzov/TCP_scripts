@@ -9,7 +9,7 @@ PROJECT_IDs = ["closure", "lang", "chart", "time", "math"]
 # PROJECT_IDS = [PROJECT_ID]
 
 if __name__ == "__main__":
-    n = 5
+    n = 10
     for PROJECT_ID in PROJECT_IDs:
         PROJECT_DIR = f"../D4J/{PROJECT_ID}/getlo"
         process_5_numeric_orderings_to_ids(PROJECT_ID, PROJECT_DIR, n)
