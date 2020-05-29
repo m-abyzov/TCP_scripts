@@ -1,5 +1,10 @@
 # Exclude .idea dir and everything inside it:
 /.idea/*
+/D4J/*/kanonizo/raw/*
+/D4J/math/kanonizo/raw/*
+/D4J/time/kanonizo/raw/*
+/D4J/lang/kanonizo/raw/*
+/D4J/chart/kanonizo/raw/*
 
 # exclude all files ends with followed extensions:
 *.zip
