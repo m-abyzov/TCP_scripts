@@ -130,12 +130,13 @@ def log_results(all_APFDs, project_id):
 
 if __name__ == "__main__":
     # run_simple_example()
-    projects_list = ['chart']
+    projects_list = ['time']
+    n_launches = 5
     # run_single_real_experiment()
     CONTROL_RANDOM_TOOL = 'modificare'
 
     for project_id in projects_list:
-        all_APFDs = estimate_orderings_foreach_project(projects_list, n_launches=10)
+        all_APFDs = estimate_orderings_foreach_project(projects_list, n_launches=n_launches)
         log_results(all_APFDs, project_id)
 
         # compute and log VD_A statistics results:
