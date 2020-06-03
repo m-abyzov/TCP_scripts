@@ -130,8 +130,8 @@ def log_results(all_APFDs, project_id):
 
 if __name__ == "__main__":
     # run_simple_example()
-    projects_list = ['time']
-    n_launches = 5
+    projects_list = ['lang', 'chart']
+    n_launches = 20
     # run_single_real_experiment()
     CONTROL_RANDOM_TOOL = 'modificare'
 
