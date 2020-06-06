@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 
-PROJECT_IDs = ["lang"]
+PROJECT_IDs = ["lang", "chart", "math", "time"]
 D4J_ROOT_DIR = "../D4J"
 
 
