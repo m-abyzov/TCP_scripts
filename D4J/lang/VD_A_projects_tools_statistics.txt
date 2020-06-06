@@ -1,6 +1,5 @@
 VD_A for lang project:
 VD_A(treatment=getlo, control=modificare_random) = (0.35, 'small')
-VD_A(treatment=kanonizo_random, control=modificare_random) = (0.5275, 'negligible')
 VD_A(treatment=kanonizo_greedy, control=modificare_random) = (0.4225, 'small')
 VD_A(treatment=kanonizo_randomsearch, control=modificare_random) = (0.425, 'small')
 VD_A(treatment=kanonizo_additionalgreedy, control=modificare_random) = (0.365, 'small')

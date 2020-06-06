@@ -1,6 +1,5 @@
 VD_A for chart project:
 VD_A(treatment=getlo, control=modificare_random) = (0.15, 'large')
-VD_A(treatment=kanonizo_random, control=modificare_random) = (0.5575, 'negligible')
 VD_A(treatment=kanonizo_greedy, control=modificare_random) = (0.67, 'medium')
 VD_A(treatment=kanonizo_randomsearch, control=modificare_random) = (0.6675, 'medium')
 VD_A(treatment=kanonizo_additionalgreedy, control=modificare_random) = (0.1275, 'large')

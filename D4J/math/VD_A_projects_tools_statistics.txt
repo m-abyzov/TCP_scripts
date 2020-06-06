@@ -1,6 +1,5 @@
 VD_A for math project:
 VD_A(treatment=getlo, control=modificare_random) = (0.7, 'medium')
-VD_A(treatment=kanonizo_random, control=modificare_random) = (0.0, 'large')
 VD_A(treatment=kanonizo_greedy, control=modificare_random) = (0.0, 'large')
 VD_A(treatment=kanonizo_randomsearch, control=modificare_random) = (0.0, 'large')
 VD_A(treatment=kanonizo_additionalgreedy, control=modificare_random) = (0.0, 'large')
