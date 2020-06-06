@@ -1,8 +1,10 @@
 from bisect import bisect_left
 from typing import List
 import scipy.stats as ss
+import matplotlib.pyplot as plt
 from apfd import estimate_single_experiment
 import os
+import numpy as np
 
 
 D4J_ROOT_DIR = "../D4J"
@@ -116,31 +118,68 @@ def log_results(all_APFDs, project_id):
             apfd_file.write(f"\t]\n")
 
 
-# def run_custom_example(treatment, control):
-#     print(VD_A(treatment, control))
+def plot_whiskers_diagrams():
+    def set_labels_to_whiskers(algo_names):
+        for i in range(len(algo_names)):
+            algo_names[i] = algo_names[i].replace('kanonizo_', 'K ')
+            algo_names[i] = algo_names[i].replace('modificare_', 'M ')
+            algo_names[i] = algo_names[i].replace('ART_man_avg', 'ART')
+            algo_names[i] = algo_names[i].replace('randomsearch', 'random search')
+            algo_names[i] = algo_names[i].replace('geneticalgorithm', 'genetic')
+            algo_names[i] = algo_names[i].replace('additionalgreedy', 'additional greedy')
+        ax1.set_xticklabels(algo_names, rotation=45, fontsize=8)
 
+    position = 0
+    def draw_plot(data):
+        nonlocal position
+        for sample in data:
+            data_sample = sample[0]
+            color = sample[1]
+            bp = ax1.boxplot(data_sample, patch_artist=sample[1], positions=[position + 0.4])
 
-# def run_single_real_experiment():
-#     chart_getlo = [0.5543337191764005, 0.5543337191764005, 0.5543337191764005, 0.5543337191764005,
-#                    0.5543337191764005]
-#     kanonizo_random = [0.6013350574913501, 0.6059483451577954, 0.6245238178450355, 0.5591689092370602,
-#                        0.6534267640582953]
-#     run_custom_example(chart_getlo, kanonizo_random)
+            plt.setp(bp['medians'], color='black')
+            if color:
+                for element in ['boxes', 'fliers', 'means', 'caps']:
+                    plt.setp(bp[element], color='gray')
+            position += 0.4
+
+    for project_id in projects_list:
+        results = dict()
+        for tool_id in tools_list:
+            if tool_id == 'getlo':
+                results[tool_id] = (all_APFDs[f'{project_id}_{tool_id}'], False)
+            else:
+                for algo_name, treatment_results in all_APFDs[f'{project_id}_{tool_id}'].items():
+                    if tool_id == 'kanonizo':
+                        results[f'{tool_id}_{algo_name}'] = (treatment_results, False)
+                    else:
+                        results[f'{tool_id}_{algo_name}'] = (treatment_results, True)
+
+        fig1, ax1 = plt.subplots()
+        ax1.set_title(project_id)
+        sort_res = {k: v for k, v in sorted(results.items(), key=lambda item: np.median(item[1][0]), reverse=True)}
+        draw_plot(sort_res.values())
+        algo_names = list(sort_res.keys())
+        set_labels_to_whiskers(algo_names)
+        plt.ylabel('APFD score')
+        plt.plot()
+
+    plt.style.use('grayscale')
+    plt.show()
 
 
 if __name__ == "__main__":
-    # run_simple_example()
-    projects_list = ['lang', 'chart']
-    n_launches = 20
-    # run_single_real_experiment()
+    projects_list = ['time', 'math', 'closure']
+    n_launches = 10
     CONTROL_RANDOM_TOOL = 'modificare'
 
-    for project_id in projects_list:
-        all_APFDs = estimate_orderings_foreach_project(projects_list, n_launches=n_launches)
-        log_results(all_APFDs, project_id)
+    all_APFDs = estimate_orderings_foreach_project(projects_list, n_launches=n_launches)
+    # compute and log VD_A statistics results:
+    tools_list = ['getlo', 'kanonizo', 'modificare']
+    plot_whiskers_diagrams()
 
-        # compute and log VD_A statistics results:
-        tools_list = ['getlo', 'kanonizo', 'modificare']
+    for project_id in projects_list:
+        log_results(all_APFDs, project_id)
         with open(f"{D4J_ROOT_DIR}/{project_id}/VD_A_projects_tools_statistics.txt", "w") as vd_a_file:
             vd_a_file.write(f"VD_A for {project_id} project:\n")
             control_results = all_APFDs[f"{project_id}_{CONTROL_RANDOM_TOOL}"]['random']
