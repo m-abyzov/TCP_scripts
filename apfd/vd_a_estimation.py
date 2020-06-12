@@ -164,13 +164,20 @@ def plot_whiskers_diagrams():
         plt.ylabel('APFD score')
         plt.plot()
 
+        # Show the major grid lines with dark grey lines
+        plt.grid(which='major', color='#777777', alpha=0.8)
+
+        # Show the minor grid lines with very faint and almost transparent grey lines
+        plt.minorticks_on()
+        plt.grid(which='minor', color='#999999', alpha=0.2)
+
     plt.style.use('grayscale')
     plt.show()
 
 
 if __name__ == "__main__":
-    projects_list = ['time', 'math', 'closure']
-    n_launches = 10
+    projects_list = ['chart', 'lang', 'time', 'math', 'closure']
+    n_launches = 20
     CONTROL_RANDOM_TOOL = 'modificare'
 
     all_APFDs = estimate_orderings_foreach_project(projects_list, n_launches=n_launches)
