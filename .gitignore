@@ -3,7 +3,6 @@
 /D4J/*/kanonizo/raw/*
 
 # exclude all files ends with followed extensions:
-*.zip
 *.tar.xz
 *.iml
 *.xml
