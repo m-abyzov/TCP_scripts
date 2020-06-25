@@ -26,7 +26,8 @@ def extract_test_methods():
     with open(ALL_TEST_METHOD_NAMES, 'r') as all_test_methods_file:
         for test_method in all_test_methods_file:
             test_methods.append(test_method.strip())
-    run_process_in_compilation_dir(f"mv {ALL_TEST_METHOD_NAMES} {DESTINATION_COVERAGE_FOLDER}")
+    project_dir = f"{REPORT_PARSER_PATH}/D4J_projects/{project_id}"
+    run_process_in_compilation_dir(f"mv {ALL_TEST_METHOD_NAMES} {project_dir}")
     return test_methods
 
 
