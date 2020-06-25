@@ -31,10 +31,13 @@ def execute_from_terminal(query, get_error=True):
     return exporting_proj_proc.communicate()
 
 
+projects_to_run = args[3:]
 for project_id, project_bugs in D4J_projects_bugs.items():
     project_name = project_id.lower()
-    print(f'project {project_id} is processing')
+    if project_name not in projects_to_run:
+        continue
 
+    print(f'project {project_id} is processing')
     PROJECT_FOLDER = f'D4J_projects/{project_name}'
     Path(PROJECT_FOLDER).mkdir(parents=True, exist_ok=True)
 

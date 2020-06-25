@@ -28,6 +28,10 @@ def extract_test_methods():
             test_methods.append(test_method.strip())
     project_dir = f"{REPORT_PARSER_PATH}/D4J_projects/{project_id}"
     run_process_in_compilation_dir(f"mv {ALL_TEST_METHOD_NAMES} {project_dir}")
+
+    subprocess.Popen(f'mv {project_dir}/all_tests {project_dir}/{project_id}_all_tests',
+                            shell=True, executable="/bin/bash", stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE).communicate()
     return test_methods
 
 
@@ -52,7 +56,6 @@ def construct_query_for_obtaining_coverage(raw_test_method):
 
     coverage_file_name = f'{test_class}___{test_method}.xml'.replace('$', '_')
 
-    # TODO: перенос в папку с текущим проектом.
     return f'{test_method_for_query} && mv coverage.xml {coverage_file_name} ' \
            f'&& mv {coverage_file_name} {DESTINATION_COVERAGE_FOLDER}'
 
@@ -70,8 +73,8 @@ if __name__ == "__main__":
                      'time': 'org.joda.time.**.*',
                      'math': 'org.apache.commons.**.*',
                      'closure': 'com.google.**.*'}
-
-    for project_id in projects_list:
+    projects_to_run = args[4:]
+    for project_id in projects_to_run:
         print(f"Process project {project_id}")
         COMPILATION_DIR = f"{D4J_MAIN_DIR}/tmp/{project_id}_1_buggy"
 
