@@ -1,1 +1,0 @@
-python ./src/time_extractor.py $1 $2
