@@ -5,4 +5,9 @@
 #projects=(chart lang math closure time)
 projects=(chart lang)
 
+# Preprocess and copy data to the GeTLO dir
 python ./src/getlo/getlo_data_processing/getlo_coverage_preprocessor.py $1 ${projects[*]}
+
+# Copy data and run the Modificare tool.
+python ./src/modificare/copy_data.py $2 ${projects[*]}
+Rscript $2/run_experiments.R ${projects[*]}
