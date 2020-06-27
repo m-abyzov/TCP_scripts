@@ -4,7 +4,7 @@
 # 3) Path till the current project, e.g. "/home/misha/PycharmProjects/TCP_scripts"
 # TODO: Uncomment for all the projects!
 #projects=(chart lang math closure time)
-projects=(chart lang)
+projects=(chart)
 
 # Preprocess and copy data to the GeTLO dir
 python ./src/getlo/getlo_data_processing/getlo_coverage_preprocessor.py $1 ${projects[*]}
@@ -13,3 +13,6 @@ python ./src/getlo/getlo_data_processing/getlo_coverage_preprocessor.py $1 ${pro
 python ./src/modificare/copy_data.py $2 ${projects[*]}
 Rscript $2/run_experiments.R ${projects[*]}
 python ./src/modificare/move_results.py $2 $3 ${projects[*]}
+
+# Launching via, e.g.
+# . execution_scripts/run_TCP_tools.sh "/home/misha/TCP_tools/GeTLO" "/home/misha/TCP_tools/modificare" "/home/misha/PycharmProjects/TCP_scripts"
