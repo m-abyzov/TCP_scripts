@@ -1,0 +1,78 @@
+Hill Climbing
+Hillclimbing/FDP_HC.R contains 3 prioritization algorithms:
+	HC_FA - First ascent hill climbing 
+	HC_SA - Steepest ascent hill climbing
+	HC_RA - Random ascent hill climbing
+	
+	Input: An enironment containing the following
+		pEnv$Seed : atomic numeric() 
+		pEnv$lFM : logical fault matrix (see Fitness/FDP_Fit.R)
+		pEnv$Ord : (Optional) starting ordering, if not found, will be 				randomly generated
+		pEnv$NG : Quoted string corresponding to a neighbor generator
+			function (see Hillclimbing/FDP_HC_NG.R)
+			"HC_FS" || "HC_LS" if using SA or FA
+			MutOp if using RA
+		pEnv$MutOp : (HC_RA only) quoted string corresponding to a 
+			mutation operator functions 
+			(see Genetic/FDP_GA_MutOps.R)
+
+	Output: List containing the following
+		Ord : The most fit ordering from the top of the hill (as a 
+			numeric vector)
+		Fit : Fitness of the hilltop ordering (atomic numeric)
+		TotalIt : Total iterations (neighborhoods) explored by the 
+			algorithm (atomic numeric)
+		Seed : Random seed value set at the start of the algorithm
+			(numeric atomic)
+
+	Sample calls:
+		myEnv <- new.env()		# Create the env
+		myEnv$Seed <- 123		# Set a seed value
+		myEnv$NG <- "NG_FS"		# Quote the neighbor generator
+		do.call("HC_FA", myEnv)		# Perform the Hillclimbing
+
+#####################
+
+Running multiple trials of the same hillclimbing configuration
+
+Hillclimbing/HC.R  ::: HC_Rep 
+	Uses the same environment as a HC function, substituting a quoted
+	string specifying a fault matrix in KFDM location, and adding the 
+	hillclimbing function to be used 
+
+	Input  
+		pEnv$HC : "HC_FA" || "HC_SA" || "HC_RA"
+		pEnv$Trials : The number of repetitions to perform (num atom)
+		pEnv$fFM : File location of KFDM Fault matri (Quoted string)
+		pEnv$NG : "NG_LS" || "NG_FS" || MutOp if using HC_RA
+		pEnv$Seed : Numeric atomic
+
+#### 
+
+Running Multiple trials of multiple configurations
+
+FDP_Multi
+All parameters as above, substituting lists when desiring multiple configurations
+
+Will generate all combinations of all input vars
+
+Do not mix HC_FA and SA with HC_RA.  The difference between type of neighbor
+generator will cause undesirable behavior
+
+
+Neighbor Generator functions
+Hillclimbing/FDP_HC_NG.R contains 2 Neighbor Generator functions (NG)
+	Note that these are only used with FA and SA, but not RA HC
+
+	NG_FS : First swap NG, swaps the first posn with each other posn
+	NG_LS : Last swap NG, swaps the alst posn with each other posn
+	
+	Input:
+		Ordering : An ordering from which to generate the neighborhood
+			(numeric vector)
+
+	Output
+		Column-bound matrix of neighboring orderings
+
+	Sample Call:
+		NG_FS(sample(c(1:100)))

@@ -1,0 +1,26 @@
+FDP_GA...  -  Genetic test suite prioritization based on the GELATIONS system
+by Conrad et al.
+
+FDP_GA : Main prioritization function, single run.
+	Produces a list with an ordering and fitness score
+	See CS09-01 p.11
+
+::Parameters:
+	FaultMatrix :: Fault matrix in memory as produced by the KFDM
+	TestCosts :: Vector of test costs with length equal to number of tests
+	cPopSize :: (Integer) size of the population in each iteration
+	cMutRate :: Mutation Rate of the Population [0:1]
+	cChildDens :: percentage of population which results from crossover
+	TransOp :: Transformation operator, see FDP_TransOps
+	SelOp :: Selection operator, see FDP_SelOp
+	CrossOp :: Crossover operator, see FDP_CrossOps
+	MutOp :: Mutation Operator, see FDP_MutOps
+	RandomSeed :: Random seed value 
+	TermCond :: Termination Condition, see FDP_Termination
+	TermConds :: Specify the value corresponding to the TermCond of the run
+
+FDP_Exp_GA : Multiple runs of a single FDP_GA configuration
+	Produces a date frame 
+	fileFaultMatrix and fileTestCosts consume file locations
+	Trials corresponds the number runs of the GA configuration
+	All other parametere are as in FDP_GA

@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+
+\topmargin 0.0in
+\setlength{\textwidth} {420pt}
+\setlength{\textheight} {620pt} 
+\setlength{\oddsidemargin} {20pt}
+\setlength{\marginparwidth} {72in}
+
+\usepackage{fancyhdr} 
+\usepackage{url}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\usepackage{placeins}
+\usepackage{morefloats}
+
+% set it so that subsubsections have numbers and they
+% are displayed in the TOC (maybe hard to read, might want to disable)
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% define widow protection
+
+\def\widow#1{\vskip #1\vbadness10000\penalty-200\vskip-#1}
+
+\clubpenalty=10000  % Don't allow orphans
+\widowpenalty=10000 % Don't allow widows
+
+% this should give me the ability to use some math symbols that 
+% were available by default in standard latex (i.e. \Box)
+
+\usepackage{latexsym}
+
+% define a little section heading that doesn't go with any number
+
+\def\littlesection#1{
+\widow{2cm}
+\vskip 0.5cm
+\noindent{\bf #1}
+\vskip 0.0001cm 
+}
+
+\pagestyle{fancyplain}
+
+\newcommand{\tstamp}{\today}   
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\lhead[\Section \thesection]            {\fancyplain{}{\rightmark}}
+\chead[\fancyplain{}{}]                 {\fancyplain{}{}}
+\rhead[\fancyplain{}{\rightmark}]       {\fancyplain{}{\thepage}}
+\cfoot[\fancyplain{\thepage}{}]         {\fancyplain{\thepage}{}}
+
+\newlength{\myVSpace}% the height of the box
+\setlength{\myVSpace}{1ex}% the default, 
+\newcommand\xstrut{\raisebox{-.5\myVSpace}% symmetric behaviour, 
+  {\rule{0pt}{\myVSpace}}%
+}
+
+% leave things with no spacing extra spacing in the final version of the paper
+\renewcommand{\baselinestretch}{1.0}    % must go before the begin of doc
+
+% suppress the use of indentation for a paragraph
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.1in}
+
+\begin{document}
+
+% handle widows appropriately
+\def\widow#1{\vskip #1\vbadness10000\penalty-200\vskip-#1}
+
+% build the title section
+
+\makeatletter
+
+\def\maketitle{%
+  %\null
+  \thispagestyle{empty}%
+  %\vfill
+  \begin{center}%\leavevmode
+    %\normalfont
+    {\Huge \@title\par}%
+    %\hrulefill\par
+    {\normalsize \@author\par}%
+    \vskip .4in
+%    {\Large \@date\par}%
+  \end{center}%
+  %\vfill
+  %\null
+  %\cleardoublepage
+
+  }
+
+\makeatother
+
+\vspace*{-1in}
+\title{Experiment Summary}
+
+% build the author section
+\author{\vspace*{.1in} Jonathan Miller Kauffman\\
+Department of Computer Science\\
+Allegheny College \\
+{\tt kauffmj@allegheny.edu}  \\
+\url{https://sites.google.com/a/allegheny.edu/jonathan-kauffman/} \\ 
+\vspace*{.1in} \today 
+}
+
+% use the default title stuff
+\maketitle
+
+\vspace*{-.6in}
+\section{Statistical Analysis}
+\label{sec:statisticalAnalysis}
+
+\subsection{Full Statistics}
+\label{subsec:fullStatistics}
+\vspace*{-.1in}
+
+% Full Statistics Sweave Code
+
+\FloatBarrier
+\subsection{Pairwise Comparisons}
+\label{subsec:pairwiseComparisons}
+\vspace*{-.1in}
+
+% Pairwise Comparisons Sweave Coded
+\include{pairwiseComparisonsFile}
+
+\FloatBarrier
+%\vspace*{-.8in}
+\section{Visualizations}
+\label{sec:visualization}
+\vspace*{-.1in}
+
+% Visualizations Sweave Code
+\include{fullStatisticsFile}
+
+\FloatBarrier
+\end{document}
