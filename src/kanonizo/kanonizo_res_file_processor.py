@@ -1,8 +1,9 @@
+from sys import argv as args
 from pathlib import Path
 import os
 
-PROJECT_IDs = ["lang", "chart", "math", "time"]
-D4J_ROOT_DIR = "../D4J"
+PROJECT_IDs = args[1:]
+D4J_DIR = "D4J_projects"
 
 
 def construct_filename(raw_file_path):
@@ -30,7 +31,7 @@ def construct_filename(raw_file_path):
 
 if __name__ == "__main__":
     for PROJECT_ID in PROJECT_IDs:
-        KANONIZO_RAW_FILES_DIR = f"{D4J_ROOT_DIR}/{PROJECT_ID}/kanonizo/raw"
+        KANONIZO_RAW_FILES_DIR = f"{D4J_DIR}/{PROJECT_ID}/results/prioritized_orderings/kanonizo/raw"
         for file in os.scandir(KANONIZO_RAW_FILES_DIR):
             raw_file_path = file.path
 
