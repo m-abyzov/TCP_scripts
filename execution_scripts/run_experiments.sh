@@ -1,1 +1,0 @@
-python ./src/apfd/vd_a_estimation.py
