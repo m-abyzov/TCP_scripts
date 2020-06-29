@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from apfd import estimate_single_experiment
 import os
 import numpy as np
-
+from sys import argv as args
 
 D4J_ROOT_DIR = "D4J_projects"
 
@@ -61,10 +61,10 @@ def estimate_orderings_foreach_project(project_list, n_launches=5):
         return f"{D4J_ROOT_DIR}/{PROJECT_ID}/{PROJECT_ID}_bugs_revealing_info.csv"
 
     def estimate_getlo_APFDs(project_id, project_path):
-        project_getlo_path = f"{project_path}/getlo"
+        project_getlo_path = f"{project_path}/getlo/processed"
         getlo_APFDs = []
-        for i in range(1, n_launches + 1):
-            getlo_ordering_file = f"{project_getlo_path}/{i}/{project_id}_tests_ordering"
+        for i in range(n_launches):
+            getlo_ordering_file = f"{project_getlo_path}/{project_id}_tests_ordering"
             getlo_APFDs.append(
                 estimate_single_experiment(getlo_ordering_file,
                                            get_bugs_info_path_by_project_id(project_id),
@@ -89,7 +89,7 @@ def estimate_orderings_foreach_project(project_list, n_launches=5):
 
     all_APFDs = {}
     for project_id in project_list:
-        project_path = f"{D4J_ROOT_DIR}/{project_id}"
+        project_path = f"{D4J_ROOT_DIR}/{project_id}/results/prioritized_orderings"
         all_APFDs[f'{project_id}_getlo'] = estimate_getlo_APFDs(
             project_id, project_path)
 
@@ -187,7 +187,7 @@ def get_results_folder_by_id(project_id):
 
 
 if __name__ == "__main__":
-    projects_list = ['chart', 'lang', 'time', 'math', 'closure']
+    projects_list = args[1:]
     create_results_folder(projects_list)
     n_launches = 20
     CONTROL_RANDOM_TOOL = 'modificare'
