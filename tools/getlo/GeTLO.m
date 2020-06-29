@@ -1,4 +1,4 @@
-function [order,numties,numoptions] = GeTLO(coverage,dep)
+function [order,numties,numoptions] = GeTLO(coverage,dep,file_to_save)
 % Finds the orderding using the GetLO algorirhtm
 % 
 %coverage = load('processed_sudoku_coverage.txt');
@@ -83,5 +83,6 @@ end
 chosen_index = find(selectedTests==1);
 resi = setdiff(1:size(chosen_index,2),order); % to add remaining test case which have zeros coverages
 order = [order resi];
+dlmwrite(file_to_save,order)
 end
 %%
