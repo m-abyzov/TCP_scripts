@@ -12,7 +12,7 @@ BUILD_DIRS = {
 }
 ALGO_NAMES = ["random", "additionalgreedy", "greedy", "randomsearch", "geneticalgorithm"]
 times_launching_algos = 20
-KANONIZO_JAR = "src/kanonizo/testing.jar"
+KANONIZO_JAR = "tools/kanonizo.jar"
 DEFECTS4J_DIR = args[1]
 PROJECT_IDs = args[2:]
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         for algo_name in ALGO_NAMES:
             print(algo_name)
             RESULT_FILENAME = f"{PROJECT_ID}_{algo_name}_res"
-            TEST_RANDOM_QUERY = f"java -jar testing.jar -s {BUILD_DIR} -t {BUILD_TEST_DIR} -a {algo_name} " \
+            TEST_RANDOM_QUERY = f"java -jar kanonizo.jar -s {BUILD_DIR} -t {BUILD_TEST_DIR} -a {algo_name} " \
                            f"-Dlog_dir={RESULT_DIR} -Dlog_filename={RESULT_FILENAME}_"
             for i in range(times_launching_algos):
                 print(f"{i + 1} file processing")
