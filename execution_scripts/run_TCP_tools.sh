@@ -26,8 +26,8 @@ do
   echo $dir_to_save
   matlab -nodisplay -nosplash -nodesktop -r "GeTLO(load('${a}'), ${depth}, '${dir_to_save}');exit;"
 done
-python ./src/getlo/getlo_name_id_mapper.py ${projects[*]}  # postprocess GeTLO.
 cd ../..
+python ./src/getlo/getlo_name_id_mapper.py ${projects[*]}  # postprocess GeTLO.
 
 # Copy data and run the Modificare tool.
 python ./src/modificare/prepare_folders.py ${projects[*]}
