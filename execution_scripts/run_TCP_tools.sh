@@ -16,7 +16,7 @@ python ./src/kanonizo/run_kanonizo.py $1 ${projects[*]}
 python ./src/kanonizo/kanonizo_res_file_processor.py ${projects[*]}
 
 # Preprocess and copy data to the GeTLO dir. Then run the GeTLO prioritization tool.
-python ./src/getlo/getlo_data_processing/getlo_coverage_preprocessor.py ${projects[*]}
+python ./src/getlo/getlo_coverage_preprocessor.py ${projects[*]}
 cd tools/getlo
 depth=1
 for project in "${projects[@]}"
